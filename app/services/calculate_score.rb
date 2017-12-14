@@ -47,7 +47,6 @@ class CalculateScore
           score.frame_scores = frame_scores.drop(1)
           score.roll_marks   = roll_marks[0..pins_by_frame.count - 11]
           score.total        = nil
-          score
 
           return score
         end
