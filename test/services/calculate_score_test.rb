@@ -60,7 +60,7 @@ class CalculateScoreTest < ActiveSupport::TestCase
 
     assert_equal ['X',nil,'X',nil,'X',nil,'X',nil,'X',nil,'X',nil,'X',nil,'X',nil,'X',nil,'X','X','G'], score.roll_marks
     assert_equal [30,60,90,120,150,180,210,240,270,290], score.frame_scores
-    assert_equal 299, score.total
+    assert_equal 290, score.total
   end
 
   test '290点２' do
@@ -69,7 +69,7 @@ class CalculateScoreTest < ActiveSupport::TestCase
 
     assert_equal ['1','/','X',nil,'X',nil,'X',nil,'X',nil,'X',nil,'X',nil,'X',nil,'X',nil,'X','X','X'], score.roll_marks
     assert_equal [20,50,80,110,140,170,200,230,260,290], score.frame_scores
-    assert_equal 299, score.total
+    assert_equal 290, score.total
   end
 
   test '練習問題１' do
@@ -86,12 +86,12 @@ class CalculateScoreTest < ActiveSupport::TestCase
     score = CalculateScore.call(pins)
 
     assert_equal ['X',nil,'X',nil,'X',nil,'9','/','G','5','5','/','6','/','8','1','X'], score.roll_marks
-    assert_equal [30,59,79,89,94,110,128,137], score.frame_scores
+    assert_equal [30,59,79,89,94,110,128,137,147], score.frame_scores
     assert_nil score.total
   end
 
   test '練習問題２で８フレームまで' do
-    pins = [10,10,10,9,1,0,5,5,5,6,4,8,1,10]
+    pins = [10,10,10,9,1,0,5,5,5,6,4,8,1]
     score = CalculateScore.call(pins)
 
     assert_equal ['X',nil,'X',nil,'X',nil,'9','/','G','5','5','/','6','/','8','1'], score.roll_marks
