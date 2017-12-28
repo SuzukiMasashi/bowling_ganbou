@@ -6,13 +6,13 @@ class CalculateScore
   end
 
   def initialize(pins)
-    @pins = pins
+    @score  = Score.new(frame_count: 10)
+    @frames = []
+    @pins   = pins
   end
 
   def call
-    score = Score.new
-
-    return score if @pins.blank?
+    return @score if @pins.blank?
 
     # scoreの属性への設定例
     #
@@ -20,9 +20,23 @@ class CalculateScore
     # score.frame_scores = [0,20,32,34]
     # score.total        = score.frame_scores.last
 
-    # （この辺に実装）
+    current_frame = Frame.new(frame_no: 1)
+
+    @pins.each do |pin|
+      current_frame.add_pin(pin)
+
+      next unless current_frame.done?
+
+      @frames.push current_frame
+      frame_no = @frames.size + 1
+      current_frame = Frame.new(frame_no: frame_no, last_frame: @score.frame_count == frame_no)
+    end
+
+    binding.pry
+
 
     # scoreオブジェクトを返してください
-    score
+    @score
   end
+
 end
